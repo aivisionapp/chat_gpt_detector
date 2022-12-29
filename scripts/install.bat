@@ -16,17 +16,17 @@ set INSTALL_ENV_DIR=%cd%\installer_files\env
 
 
 @rem check if the env with name "chat_gpt_detector" already exists
-call conda env list | findstr chat_gpt_detector
+call conda env list | findstr ocr_reader
 if "%ERRORLEVEL%" NEQ "0" (
     @rem create conda env with python 3.8
-    call conda create -y -n chat_gpt_detector python=3.8 || (
-        echo "Error creating conda environment for Chat-GPT detector. Sorry about that, please try again." & echo.
+    call conda create -y -n ocr_reader python=3.6 || (
+       @echo. & echo "Error creating conda enviroment for OCR Reader.. press any key to exit" & echo.
         pause
         exit /b
     )
 ) else (
     @rem env already exists
-    @echo "Chat-GPT detector conda environment already exists."
+    @echo "Envirnoment already exists."
 )
 
 
@@ -34,9 +34,9 @@ if "%ERRORLEVEL%" NEQ "0" (
 
 @rem activate conda env
 
-call conda activate chat_gpt_detector
+call conda activate ocr_reader
 @if "%ERRORLEVEL%" NEQ "0" (
-       @echo. & echo "Error activating conda for Chat-GPT detector. Sorry about that, please try again." & echo.
+       @echo. & echo "Error activating conda for OCR Reader.. press any key to exit" & echo.
        pause
        exit /b
 )
@@ -62,7 +62,7 @@ if "%ERRORLEVEL%" EQU "0" (
 
         @call conda install -c conda-forge -y uvicorn fastapi  || (
 
-        echo "Error installing fastapi. Sorry about that :(" & echo.
+        echo "Error installing fastapi .. press any key to exit" & echo.
         pause
         exit /b
     )
@@ -73,7 +73,7 @@ if "%ERRORLEVEL%" EQU "0" (
 @call WHERE uvicorn > .tmp
 @>nul findstr /m "uvicorn" .tmp
 @if "%ERRORLEVEL%" NEQ "0" (
-    @echo. & echo "UI packages not found! Sorry about that, please try to:" & echo "  1. Run this installer again." & echo "  2. If that doesn't fix it, please try the common troubleshooting steps at https://github.com/cmdr2/stable-diffusion-ui/wiki/Troubleshooting" & echo "  3. If those steps don't help, please copy *all* the error messages in this window, and ask the community at https://discord.com/invite/u9yhsFmEkB" & echo "  4. If that doesn't solve the problem, please file an issue at https://github.com/cmdr2/stable-diffusion-ui/issues" & echo "Thanks!" & echo.
+    echo "Error installing uvicorn .. press any key to exit" & echo.
     pause
     exit /b
 )

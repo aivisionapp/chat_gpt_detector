@@ -77,3 +77,16 @@ if "%ERRORLEVEL%" EQU "0" (
     pause
     exit /b
 )
+
+set PYTHONPATH=%INSTALL_ENV_DIR%\lib\site-packages
+echo PYTHONPATH=%PYTHONPATH%
+
+@set APP_PATH=%cd%\app
+@if NOT DEFINED BIND_PORT set BIND_PORT=8000
+@if NOT DEFINED BIND_IP set BIND_IP=0.0.0.0
+
+
+@uvicorn main:app --app-dir "%APP_PATH%" --port %BIND_PORT% --host %BIND_IP% --log-level error
+
+
+@pause

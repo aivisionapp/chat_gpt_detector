@@ -2,8 +2,9 @@
 
 
 
-### uvicorn debug 
+### uvicorn for debuging only
 
 ```bash
-uvicorn main:app --reload --app-dir chat_gpt_detector
+uvicorn main:server_api --reload --app-dir app
 ```
+

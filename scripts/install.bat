@@ -18,7 +18,7 @@ set INSTALL_ENV_DIR=%cd%\installer_files\env
 @rem check if the env with name "chat_gpt_detector" already exists
 call conda env list | findstr ocr_reader
 if "%ERRORLEVEL%" NEQ "0" (
-    @rem create conda env with python 3.8
+    @rem create conda env with python 3.9
     call conda create -y -n ocr_reader python=3.9 || (
        @echo. & echo "Error creating conda enviroment for OCR Reader.. press any key to exit" & echo.
         pause
@@ -84,9 +84,10 @@ echo PYTHONPATH=%PYTHONPATH%
 @set APP_PATH=%cd%\app
 @if NOT DEFINED BIND_PORT set BIND_PORT=8000
 @if NOT DEFINED BIND_IP set BIND_IP=0.0.0.0
+@if NOT DEFINED UI_PATH set UI_PATH=%cd%\app\ui
 
 
-@uvicorn main:app --app-dir "%APP_PATH%" --port %BIND_PORT% --host %BIND_IP% --log-level error
+@uvicorn main:server_api --app-dir "%APP_PATH%" --port %BIND_PORT% --host %BIND_IP% --log-level error
 
 
 @pause

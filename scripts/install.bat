@@ -70,6 +70,58 @@ if "%ERRORLEVEL%" EQU "0" (
 
 )
 
+
+call python scripts\check_modules.py pytesseract  
+if "%ERRORLEVEL%" EQU "0" (
+    echo "pytesseract have already been installed."
+) else (
+        echo "pytesseract not installeed. installing now..."
+        set PYTHONNOUSERSITE=1
+        set PYTHONPATH=%INSTALL_ENV_DIR%\lib\site-packages
+
+
+        @call where python
+
+        @call python --version
+
+        @call conda install -c conda-forge -y pytesseract  || (
+
+        echo "Error installing fastapi .. press any key to exit" & echo.
+        pause
+        exit /b
+    )
+
+
+)
+
+
+
+
+call python scripts\check_modules.py docquery  
+if "%ERRORLEVEL%" EQU "0" (
+    echo "docquery have already been installed."
+) else (
+        echo "docquery not installeed. installing now..."
+        set PYTHONNOUSERSITE=1
+        set PYTHONPATH=%INSTALL_ENV_DIR%\lib\site-packages
+
+
+        @call where python
+
+        @call python --version
+
+        @call pip install docquery || (
+
+        echo "Error installing fastapi .. press any key to exit" & echo.
+        pause
+        exit /b
+    )
+
+
+)
+
+
+
 @call WHERE uvicorn > .tmp
 @>nul findstr /m "uvicorn" .tmp
 @if "%ERRORLEVEL%" NEQ "0" (
